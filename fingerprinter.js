@@ -30,7 +30,7 @@ async function main() {
   for (let i = 0; i < 5; i += 1) {
     const fingerprint = await getFingerprint();
     const hash = objectHash(fingerprint);
-    fingerprints.push({ hash, fingerprint });
+    fingerprints.push(hash);
   }
 
   await fetch('/fingerprints', {

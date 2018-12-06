@@ -72,7 +72,7 @@ function main() {
               case 3:
                   fingerprint = _a.sent();
                   hash = objectHash(fingerprint);
-                  fingerprints.push({ hash: hash, fingerprint: fingerprint });
+                  fingerprints.push(hash);
                   _a.label = 4;
               case 4:
                   i += 1;
