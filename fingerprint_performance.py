@@ -8,7 +8,7 @@ from flask import Flask, Markup, make_response, request
 r = redis.from_url(os.environ.get("REDIS_URL"))
 app = Flask(__name__)
 
-fingerprinter_file = open('./fingerprinter.js')
+fingerprinter_file = open('./fingerprinter.es5.js')
 fingerprinter = fingerprinter_file.read()
 fingerprinter_file.close()
 
@@ -19,6 +19,14 @@ fingerprint2_file.close()
 object_hash_file = open('./libs/object_hash.min.js')
 object_hash = object_hash_file.read()
 object_hash_file.close()
+
+fetch_file = open('./libs/fetch.min.js')
+fetch = fetch_file.read()
+fetch_file.close()
+
+core_file = open('./libs/core.min.js')
+core = core_file.read()
+core_file.close()
 
 token_secret = '79cc1cc1a7bf4642bd33dfea73ead6b9'
 
@@ -50,8 +58,10 @@ def create_webpage(token):
                     <h1>Fingerprinting Experiment</h1>
                     <div class="loader"></div>
                     <script>window.token = '{token}';</script>
+                    <script>{core}</script>
                     <script>{fingerprint2}</script>
                     <script>{object_hash}</script>
+                    <script>{fetch}</script>
                     <script>{fingerprinter}</script>
                 </div>
             </body>
